@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/font/Poppins-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Tillana";
+  src: url("/font/Tillana-Medium.ttf") format("truetype");
+}
+
+.border-chat-user {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.border-chat-bot {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
