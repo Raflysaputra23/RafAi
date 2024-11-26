@@ -2,8 +2,9 @@
 
 
 
-const Body = ({ chat }) => {
+const Body = ({ chat, text }) => {
     return (
+        
         <section className="p-2 pb-36 flex flex-col gap-2 overflow-y-auto overflow-x-hidden font-poppins" style={{height: "100%"}}>
           {chat && chat.map((chat, key) => {
           if (chat.role === "user") {
@@ -20,6 +21,7 @@ const Body = ({ chat }) => {
             )
           }
           })}
+          <h1 className="m-auto font-poppins text-2xl font-bold typeWriting text-center" style={(chat == false) ? {display: "block"} : {display: "none"}}>{text}</h1>
         </section>
     );
 }

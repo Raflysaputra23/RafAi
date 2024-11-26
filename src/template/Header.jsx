@@ -2,7 +2,7 @@
 // eslint-disable-next-line react/prop-types
 const Header = ({ handleClearChat, handleMode, mode }) => {
     return (
-        <header className="p-3 rounded-md shadow bg-blue-800 flex justify-between font-tillana text-slate-300 dark:bg-slate-900">
+        <header className="p-3 rounded-md shadow bg-blue-800 flex justify-between items-center font-tillana text-slate-300 dark:bg-slate-900">
           <h1 className="text-xl">{"</>"} RafAi</h1>
           <section className="flex items-center gap-5">
             <button className="shadow-md shadow-blue-950 active:shadow-none w-8 h-8 rounded-full flex flex-col items-center justify-center overflow-hidden" onClick={handleMode}>

@@ -8,13 +8,46 @@ import RafAi from "./server/RafAi";
 import Header from "./template/Header.jsx";
 import Body from "./template/Body.jsx";
 import Footer from "./template/Footer.jsx";
+import { useEffect } from "react";
 
 
 const App = () => {
   if(!localStorage.getItem("session")) localStorage.setItem("session", Math.round(Math.random() * 100000));
   const [ chat, setChat ] = useState(localStorage.getItem("chat") !== null ? JSON.parse(localStorage.getItem("chat")) : []);
   const [ mode, setMode ] = useState("light");
+  const [ text, setText ] = useState("");
   // eslint-disable-next-line no-unused-vars
+
+  useEffect(() => {
+    const type = ["I,M RafAi","Apa yang ingin kamu tanyakan?"];
+    let i = 0;
+    let t = 0;
+    let cek = true;
+    let delay = 200;
+    const interval = setInterval(() => {
+      setTimeout(() => {
+        if(cek) {
+          setText(type[t].slice(0, i));
+          i++;
+        } else {
+          setText(type[t].slice(0, i));
+          i--;
+        }
+
+        if(i === type[t].length) {
+          if(t === type.length - 1) return;
+          cek = false;
+          delay = 1000;
+        } else if(i === 0) {
+          cek = true;
+          delay = 200;
+          t++;
+        }
+      }, delay);
+    }, 200);
+    return () => clearInterval(interval);
+  },[]);
+
   const handleChat = async (e) => {
     e.preventDefault();
 
@@ -68,7 +101,7 @@ const App = () => {
     <>
       <main className="mx-auto min-w-80 w-[100%] md:max-w-[90%] relative border overflow-hidden bg-slate-200 text-slate-900 dark:text-slate-200 dark:bg-slate-800" style={{height: "95%"}}>
         <Header handleClearChat={handleClearChat} handleMode={handleMode} mode={mode} />
-        <Body chat={chat} />
+        <Body chat={chat} text={text}/>
         <Footer handleChat={handleChat} handleInput={handleInput} />
       </main>
     </>
