@@ -46,12 +46,12 @@ const App = () => {
   
   return (
     <>
-      <main className="container mx-auto min-w-80 w-[90%] max-w-[90%] h-lvh relative border overflow-hidden">
+      <main className="mx-auto min-w-80 w-[90%] max-w-[90%] relative border" style={{height: "100%"}}>
         <header className="p-3 rounded-md shadow bg-blue-800 flex justify-between font-tillana text-slate-300">
           <h1 className="text-xl">{"</>"} RafAi</h1>
-          <button id="btn-remove-chat" type="submit" className="text-sm p-2 bg-red-600 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleClearChat}>Hapus <i className="bx bx-message"></i></button>
+          <button id="btn-remove-chat" type="submit" className="text-sm p-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" onClick={handleClearChat}>Hapus <i className="bx bx-message"></i></button>
         </header>
-        <section className="p-2 pb-36 flex flex-col gap-2 h-lvh overflow-y-auto overflow-x-hidden">
+        <section className="p-2 pb-36 flex flex-col gap-2 overflow-y-auto overflow-x-hidden">
           {chat && chat.map((chat, key) => {
           if (chat.role === "user") {
             return (
