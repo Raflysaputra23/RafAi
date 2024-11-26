@@ -19,7 +19,7 @@ const App = () => {
     document.getElementById("input").setAttribute('disabled','true');
 
     const response = await RafAi(text, session);
-    setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: `${response}`}]);
+    setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: response}]);
     setChat((prevChat) => {
       localStorage.setItem("chat", JSON.stringify(prevChat));
       return prevChat;
@@ -62,7 +62,7 @@ const App = () => {
           } else {
             return (
               <div key={key} className="card bot self-start max-w-[70%] p-2 border-chat-bot shadow-sm bg-blue-600 text-slate-100">
-                <p>{`${chat.content}`}</p>
+                <p className="whitespace-pre-wrap">{chat.content}</p>
               </div>
             )
           }
