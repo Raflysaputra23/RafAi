@@ -62,16 +62,11 @@ const App = () => {
           } else {
             return (
               <div key={key} className="card bot self-start max-w-[70%] p-2 border-chat-bot shadow-sm bg-blue-600 text-slate-100">
-                <p>{chat.content}</p>
+                <p>{`${chat.content}`}</p>
               </div>
             )
           }
           })}
-          {/* {chatBo.map((chat, key) => (
-          <div key={key} className="card bot self-start max-w-[70%] p-2 border-chat-bot shadow-sm bg-blue-600 text-slate-100">
-            <p>{chat}</p>
-          </div>
-          ))} */}
         </section>
         <footer className="absolute bottom-0 left-0 right-0 p-3 rounded-md shadow bg-slate-200 font-poppins text-slate-700">
           <form action="" className="flex gap-2" onSubmit={handleChat}>
