@@ -7,7 +7,7 @@ const { apikey ,prompt } = {
 const RafAi = async (msg, session) => {
     try {
         const { data }  = await axios(`https://kizhbotz.online/api/luminai?message=${msg}&sifat=${prompt}&session=${session}&apikey=${apikey}`);
-        return data.data.response;
+        return `${data.data.response}`;
     } catch(err) {
         console.log("Error RafAi ", err);
     }

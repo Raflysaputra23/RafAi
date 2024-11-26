@@ -19,7 +19,7 @@ const App = () => {
     document.getElementById("input").setAttribute('disabled','true');
 
     const response = await RafAi(text, session);
-    setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: response}]);
+    setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: `${response}`}]);
     setChat((prevChat) => {
       localStorage.setItem("chat", JSON.stringify(prevChat));
       return prevChat;
