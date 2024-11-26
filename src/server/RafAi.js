@@ -5,7 +5,7 @@ const { apikey ,prompt } = {
     apikey: "kizh-api-key"
 };
 const RafAi = async (msg, session) => {
-    const { data }  = await axios(`https://api-dingin-cuy.vercel.app/api/luminai?message=${msg}&sifat=${prompt}&session=${session}&apikey=${apikey}`);
+    const { data }  = await axios(`https://kizhbotz.online/api/luminai?message=${msg}&sifat=${prompt}&session=${session}&apikey=${apikey}`);
     return data.data.response;
 }
 
