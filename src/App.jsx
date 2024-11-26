@@ -13,6 +13,7 @@ import Footer from "./template/Footer.jsx";
 const App = () => {
   if(!localStorage.getItem("session")) localStorage.setItem("session", Math.round(Math.random() * 100000));
   const [ chat, setChat ] = useState(localStorage.getItem("chat") !== null ? JSON.parse(localStorage.getItem("chat")) : []);
+  const [ mode, setMode ] = useState("light");
   // eslint-disable-next-line no-unused-vars
   const handleChat = async (e) => {
     e.preventDefault();
@@ -46,6 +47,16 @@ const App = () => {
     }
   }
 
+  const handleMode = () => {
+    if(mode === "dark") {
+      document.querySelector("html").classList.replace("dark","light");
+      setMode("light");
+    } else {
+      document.querySelector("html").classList.replace("light","dark");
+      setMode("dark");
+    }
+  }
+
   const handleClearChat = (e) => {
     localStorage.removeItem("chat");
     localStorage.removeItem("session");
@@ -55,8 +66,8 @@ const App = () => {
   
   return (
     <>
-      <main className="mx-auto min-w-80 w-[100%] md:max-w-[90%] relative border overflow-hidden" style={{height: "95%"}}>
-        <Header handleClearChat={handleClearChat} />
+      <main className="mx-auto min-w-80 w-[100%] md:max-w-[90%] relative border overflow-hidden bg-slate-200 text-slate-900 dark:text-slate-200 dark:bg-slate-800" style={{height: "95%"}}>
+        <Header handleClearChat={handleClearChat} handleMode={handleMode} mode={mode} />
         <Body chat={chat} />
         <Footer handleChat={handleChat} handleInput={handleInput} />
       </main>

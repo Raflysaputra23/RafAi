@@ -8,13 +8,13 @@ const Body = ({ chat }) => {
           {chat && chat.map((chat, key) => {
           if (chat.role === "user") {
             return (
-              <div key={key} className="card user self-end max-w-[85%] p-2 border-chat-user shadow-sm bg-blue-600 text-slate-100">
+              <div key={key} className="card user self-end max-w-[85%] p-2 border-chat-user shadow-sm bg-blue-600 text-slate-100 dark:bg-slate-900">
                 <p className="whitespace-pre-wrap">{chat.content}</p>
               </div>
             )
           } else {
             return (
-              <div key={key} className="card bot self-start max-w-[85%] p-2 border-chat-bot shadow-sm bg-blue-600 text-slate-100">
+              <div key={key} className="card bot self-start max-w-[85%] p-2 border-chat-bot shadow-sm bg-blue-600 text-slate-100 dark:bg-slate-900">
                 <p className="whitespace-pre-wrap">{chat.content}</p>
               </div>
             )
