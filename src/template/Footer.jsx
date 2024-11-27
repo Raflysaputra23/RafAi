@@ -7,7 +7,7 @@ const Footer = ({ handleChat, handleInput, StartRecording, StopRecording }) => {
           <form action="" className="flex gap-2" onSubmit={handleChat}>
             <input id="input" type="text" name="chat" className="w-full p-3 rounded-md outline-none border-none bg-slate-100 dark:bg-slate-800" onChange={handleInput} placeholder="Ketik pesan..." />
             <button id="submit" type="submit" className="p-1 px-3 rounded-md bg-blue-800 text-slate-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled><i className="bx bx-send text-2xl"></i></button>
-            <button id="recording" type="button" className="p-1 px-3 rounded-md bg-blue-800 text-slate-100 bx bx-microphone text-2xl" onMouseDown={StartRecording} onMouseUp={StopRecording}></button>
+            <button id="recording" type="button" className="p-1 px-3 rounded-md bg-blue-800 text-slate-100 bx bx-microphone text-2xl" onTouchStart={StartRecording} onTouchEnd={StopRecording}></button>
           </form>  
         </footer>
     );
