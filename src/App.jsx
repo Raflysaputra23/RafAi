@@ -113,12 +113,12 @@ const App = () => {
     recording.stop();
 
     const session = localStorage.getItem("session");
+    let finalText = "";
     console.log("Stop recording...");
 
     recording.onresult = async (event) => {
       const text = event.results[event.results.length - 1][0].transcript;
-      
-      if(event.results[event.results.length - 1].isFinal) {
+      if(event.results[event.results.length - 1].isFinal && text !== finalText) {
         setChat((prevChat) => [...prevChat,{role: "user", content: text}]);
         setChat((prevChat) => [...prevChat,{role: "assistant", content: (<svg className="animate-spin h-5 w-5 border-r-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>)}]);
 
@@ -134,6 +134,7 @@ const App = () => {
     recording.onerror = (event) => {
       console.log(event.error);
     }
+
     const button = document.getElementById("recording");
     button.classList.replace('text-red-500','text-slate-100');
 
