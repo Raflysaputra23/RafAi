@@ -19,6 +19,7 @@ const App = () => {
   const [ text, setText ] = useState("");
   const [ record, setRecord ] = useState(true);
   const [ recording, setRecording ] = useState(Recorder());
+  const [ final, setFinal ] = useState(true);
   
   // eslint-disable-next-line no-unused-vars
 
@@ -120,7 +121,8 @@ const App = () => {
       recording.onresult = async (event) => {
         const text = event.results[event.results.length - 1][0].transcript;
         console.log(text);
-        if(event.results[event.results.length - 1].isFinal) {
+        if(event.results[event.results.length - 1].isFinal && final) {
+          setFinal(false);
           setChat((prevChat) => [...prevChat,{role: "user", content: text}]);
           setChat((prevChat) => [...prevChat,{role: "assistant", content: (<svg className="animate-spin h-5 w-5 border-r-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>)}]);
 
