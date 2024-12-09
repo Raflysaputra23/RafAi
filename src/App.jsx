@@ -19,6 +19,7 @@ const App = () => {
   const [ text, setText ] = useState("");
   const [ record, setRecord ] = useState(true);
   const [ recording, setRecording ] = useState(Recorder());
+  const [ final, setFinal ] = useState("");
   
   // eslint-disable-next-line no-unused-vars
 
@@ -94,7 +95,7 @@ const App = () => {
     }
   }
   
-  const handleClearChat = (e) => {
+  const handleClearChat = async (e) => {
     localStorage.removeItem("chat");
     localStorage.removeItem("session");
     setChat([]);
@@ -103,7 +104,6 @@ const App = () => {
 
   const handleRecording = async (e) => {
     e.preventDefault();
-    let final;
     if(record) {
       setRecord(false);
       recording.start();
@@ -118,22 +118,24 @@ const App = () => {
 
       const session = localStorage.getItem("session");
 
-      recording.onresult = async (event) => {
-        if(event.results[event.results.length - 1].isFinal) {
-          console.log(event.results[event.results.length - 1][0].transcript);
-          final = event.results[event.results.length - 1][0].transcript;
 
-          setChat((prevChat) => [...prevChat,{role: "user", content: final}]);
-          setChat((prevChat) => [...prevChat,{role: "assistant", content: (<svg className="animate-spin h-5 w-5 border-r-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>)}]);
-    
-          const response = await RafAi(final, session);
-          setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: response}]);
-          setChat((prevChat) => {
-          localStorage.setItem("chat", JSON.stringify(prevChat));
-            return prevChat;
-          });
+      recording.onresult = (event) => {
+        if(event.results[event.results.length - 1].isFinal) {
+          // console.log(event.results[event.results.length - 1][0].transcript);
+          setFinal(event.results[event.results.length - 1][0].transcript);
         }
       }
+
+      console.log(final);
+      setChat((prevChat) => [...prevChat,{role: "user", content: final}]);
+      setChat((prevChat) => [...prevChat,{role: "assistant", content: (<svg className="animate-spin h-5 w-5 border-r-2 border-b-2 border-white rounded-full" viewBox="0 0 24 24"></svg>)}]);
+
+      const response = await RafAi(final, session);
+      setChat((prevChat) => [...prevChat.slice(0, -1),{role: "assistant", content: response}]);
+      setChat((prevChat) => {
+      localStorage.setItem("chat", JSON.stringify(prevChat));
+        return prevChat;
+      });
         
 
       recording.onerror = (event) => {
